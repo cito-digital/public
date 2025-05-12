@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  webapp:
+    image: ghcr.io/cito-digital/galmm-web:latest
+    environment:
+      - SQL_SERVER=sqlserver
+      - SQL_PASSWORD=exampleSql2022Passw0rd
+    ports:
+      - "${PORT:-8888}:8081"
+    restart: unless-stopped
+  sqlserver:
+    image: ghcr.io/cito-digital/galmm-sql:latest
+    environment:
+      - MSSQL_SA_PASSWORD=exampleSql2022Passw0rd
+      - ACCEPT_EULA=Y
+    #volumes:
+    #  - sqlserver_data:/var/opt/mssql
+
+#volumes:
+#  sqlserver_data: 
